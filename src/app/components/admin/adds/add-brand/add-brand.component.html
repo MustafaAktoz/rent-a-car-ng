@@ -1,0 +1,8 @@
+<form [formGroup]="addBrandFormGroup">
+    <div class="form-group">
+        <label for="name">Marka</label>
+        <input type="text" id="name" placeholder="Marka" formControlName="name" class="form-control">
+        <div class="alert alert-danger" *ngIf="addBrandFormGroup.get('name').hasError('required')&&addBrandFormGroup.get('name').touched">Bu alanı doldurmak zorunludur</div>
+    </div>
+    <button class="btn-primary mt-3" (click)="add()">Ekle</button>
+</form>

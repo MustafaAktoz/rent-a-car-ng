@@ -1,0 +1,18 @@
+<li *ngIf="isAdmin()" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Yönetim
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li><a class="dropdown-item" routerLink="/list/car">Arabalar</a></li>
+      <li><a class="dropdown-item" routerLink="/list/brand">Markalar</a></li>
+      <li><a class="dropdown-item" routerLink="/list/color">Renkler</a></li>
+      <li><a class="dropdown-item" routerLink="/list/customer">Müşteriler</a></li>
+      <li><a class="dropdown-item" routerLink="/list/rental">Kiralamalar</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" routerLink="/add/car">Araba Ekle</a></li>
+      <li><a class="dropdown-item" routerLink="/add/brand">Marka Ekle</a></li>
+      <li><a class="dropdown-item" routerLink="/add/color">Renk Ekle</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>

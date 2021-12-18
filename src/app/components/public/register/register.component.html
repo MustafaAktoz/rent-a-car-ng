@@ -1,0 +1,29 @@
+<body class="text-center">
+    <form class="form-signin" [formGroup]="registerFormGroup">
+        <h1 class="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
+
+        <label for="firstName" class="sr-only">Ad</label>
+        <input type="text" id="firstName" class="form-control" placeholder="Ad" formControlName="firstName" autofocus>
+
+        <label for="lastName" class="sr-only">Soyad</label>
+        <input type="text" id="lastName" class="form-control" placeholder="Soyad" formControlName="lastName">
+
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Email" formControlName="email">
+
+        <label for="password" class="sr-only">Şifre</label>
+        <input type="password" id="password" class="form-control" placeholder="Şifre" formControlName="password">
+
+        <label for="confirmPassword" class="sr-only"></label>
+        <input type="password" id="confirmPassword" class="form-control" placeholder="Şifreyi Tekrarla" formControlName="confirmPassword">
+
+        <div class="checkbox mb-1">
+            <label id="center" class="row col-md-5">
+            <input type="checkbox" value="remember-me" class="col-md-1"> <p class="col-md-11">Remember me</p>
+          </label>
+        </div>
+        
+        <button class="btn btn-lg btn-primary btn-block" (click)="register()" type="submit">Kayıt Ol</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+</body>

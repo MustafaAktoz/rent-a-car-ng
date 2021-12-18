@@ -1,0 +1,60 @@
+<div *ngIf="carImages">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div *ngFor="let carImage of carImages" class="carousel-item {{getActiveCssClass(carImage)}} border">
+                <img [src]="getCarImage(carImage)" class="d-block w-100" width="100%" height="600" alt="image">
+            </div>
+    
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>Marka</th>
+                <th>Renk</th>
+                <th>Model Yılı</th>
+                <th>Açıklama</th>
+                <th>Findeks Puanı</th>
+                <th>Günlük Fiyat</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{carDetailDto.id}}</td>
+                <td>{{carDetailDto.name}}</td>
+                <td>{{carDetailDto.brandName}}</td>
+                <td>{{carDetailDto.colorName}}</td>
+                <td>{{carDetailDto.modelYear}}</td>
+                <td>{{carDetailDto.description}}</td>
+                <td>{{carDetailDto.findeksPoint}}</td>
+                <td>{{carDetailDto.dailyPrice |currency}}</td>
+                <td><button class="btn-outline-primary" routerLink="/rent/car/{{carDetailDto.id}}">Kirala</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,8 @@
+<form [formGroup]="addColorFormGroup">
+    <div class="form-group">
+        <label for="name">Renk</label>
+        <input type="text" id="name" placeholder="Renk" formControlName="name" class="form-control">
+        <div class="alert alert-danger" *ngIf="addColorFormGroup.get('name').hasError('required')&&addColorFormGroup.get('name').touched">Bu alanı doldurmak zorunludur</div>
+    </div>
+    <button class="btn-primary mt-3" (click)="add()">Ekle</button>
+</form>

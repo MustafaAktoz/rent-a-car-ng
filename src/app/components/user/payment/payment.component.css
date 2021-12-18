@@ -1,0 +1,6 @@
+p{
+    margin-top: auto;
+    margin-left: 5px;
+}
+
+li:hover {background-color: lightgrey;}

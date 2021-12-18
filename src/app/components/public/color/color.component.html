@@ -1,0 +1,19 @@
+<div class="row">
+    <!-- filter -->
+    <!-- <div class="list-group col-md-9 ">
+        <input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText"
+          [(ngModel)]="filterText">
+      </div> -->
+
+    <ul class="list-group col-md-9">
+        <select class="list-group-item" [(ngModel)]="currentColorId">
+            <option class="list-group-item" value="0">
+                Tüm Renkler
+            </option>
+            <option *ngFor="let color of colors |colorFilter:filterText" [value]="color.id">
+                {{color.name}}
+            </option>
+        </select>
+    </ul>
+    <button class="btn btn-outline-primary col-md-3" (click)="filter()">Filitrele</button>
+</div>

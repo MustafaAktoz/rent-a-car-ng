@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Güncelle</h5>
+            <button type="button" class="btn-close" routerLink="/list/brand"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="updateBrandFormGroup">
+                <div class="form-group">
+                    <label for="name">Marka</label>
+                    <input type="text" id="name" placeholder="Marka" formControlName="name" class="form-control">
+                    <div class="alert alert-danger"
+                        *ngIf="updateBrandFormGroup.get('name').hasError('required')&&updateBrandFormGroup.get('name').touched">
+                        Bu alanı doldurmak zorunludur</div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" routerLink="/list/brand">Çık</button>
+            <button class="btn btn-primary" (click)="update()">Güncelle</button>
+        </div>
+    </div>
+</div>

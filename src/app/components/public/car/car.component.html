@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText"
+      [(ngModel)]="filterText">
+  </div>
+
+  <div class="col-md-3 ms-auto me-3">
+    <app-brand></app-brand>
+  </div>
+  <div class="col-md-3 me-3">
+    <app-color></app-color>
+  </div>
+  
+
+</div>
+
+
+<div class="row">
+  <div *ngIf="carDetailDtos&&carDetailDtos.length==0">
+    <h3>Hiç araba bulunamadı...</h3>
+  </div>
+  <div *ngFor="let carDetailDto of carDetailDtos |carDetailDtoFilter:filterText" class="card col-md-3 ms-3 me-3 mb-3"
+    style="width: 18rem;">
+    <img [src]="getCarImage(carDetailDto)" class="card-img-top mt-2" width="100%" height="150" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{carDetailDto.name}}</h5>
+      <p class="card-text">{{carDetailDto.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{carDetailDto.brandName}}</li>
+      <li class="list-group-item">{{carDetailDto.colorName}}</li>
+      <li class="list-group-item">{{carDetailDto.dailyPrice |currency}}</li>
+    </ul>
+    <div class="card-body">
+      <button class="btn-outline-info" routerLink="/car-detail/{{carDetailDto.id}}">Detay</button>
+      <button class="btn-outline-primary ms-3" routerLink="/rent/car/{{carDetailDto.id}}">Kirala</button>
+    </div>
+  </div>
+</div>

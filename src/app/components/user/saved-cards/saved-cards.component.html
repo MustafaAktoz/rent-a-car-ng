@@ -1,0 +1,36 @@
+<h5>Kayıtlı Kartlar</h5>
+<div *ngFor="let payment of payments">
+    <ul class="list-group mb-1">
+        <li class="list-group-item row">
+            <td class="col-md-2"><strong>Kart üzerindeki isim:</strong></td>
+            <td class="col-md-4">{{payment.cardHolderName}}</td>
+            <td class="col-md-2"><strong>Kart Numarası:</strong></td>
+            <td class="col-md-4">{{payment.cardNumber |creditCard}}</td>
+            <td class="col-md-1"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                    (click)="setCurrentPayment(payment)">Sil</button></td>
+        </li>
+    </ul>
+</div>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="currentPayment">
+                <div class="modal-body">
+                    '{{currentPayment.cardNumber}}' numaralı kart silinecek...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" (click)="delete()">Sil</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

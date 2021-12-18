@@ -1,0 +1,47 @@
+<input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText" [(ngModel)]="filterText"> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Renk</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let color of colors |colorFilter:filterText">
+            <td>{{color.id}}</td>
+            <td>{{color.name}}</td>
+            <td>
+                <div class="row col-md-6">
+                    <div class="col-md-auto"><button type="button" class="btn btn-outline-primary" routerLink="/update/color/{{color.id}}"(click)="saveCurrentColor(color)">Güncelle</button></div>
+                    <div class="col-md-auto"><button type="button" class="btn btn-outline-danger" (click)="setCurrentColor(color)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Sil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div *ngIf="currentColor">
+            <div class="modal-body">
+            <strong>{{currentColor.name}}</strong> Silinecek
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="delete()">Sil</button>
+        </div>
+        </div>
+        
+    </div>
+</div>
+</div>

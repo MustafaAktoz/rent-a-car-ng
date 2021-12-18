@@ -1,0 +1,100 @@
+<div *ngIf="loggedIn()">
+  <div class="mb-3">
+    <h4>Kayıtlı Kartlarınız</h4>
+    <ul *ngFor="let payment of payments" class="list-group card mt-1" (click)="setCurrentPayment(payment)"
+      data-bs-toggle="modal" data-bs-target="#savedCardModal">
+      <li class="list-group-item">
+        <strong>Kayıtlı Kart Üzerindeki İsim:</strong> {{payment.cardHolderName}}
+      </li>
+    </ul>
+  </div>
+
+  <form *ngIf="payments" [formGroup]="paymentFormGroup">
+    <h4>Kredi Kartı İle Ödeme</h4>
+    <div class="form-group">
+      <label for="cardHolderName">Kart Üzerindeki İsim</label>
+      <input type="text" id="cardHolderName" placeholder="Kart Üzerindeki İsim" formControlName="cardHolderName"
+        class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="paymentFormGroup.get('cardHolderName').hasError('required')&&paymentFormGroup.get('cardHolderName').touched">
+        Bu alanı doldurmak zorunlu</div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="cardNumber">Kart Numarası</label>
+      <input type="text" id="cardNumber"  placeholder="Kart Numarası" formControlName="cardNumber" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="paymentFormGroup.get('cardNumber').hasError('required')&&paymentFormGroup.get('cardNumber').touched">Bu
+        alanı doldurmak zorunlu</div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="year">Yıl</label>
+      <input type="number" id="year" placeholder="Yıl" formControlName="year" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="paymentFormGroup.get('year').hasError('required')&&paymentFormGroup.get('year').touched">Bu alanı
+        doldurmak zorunlu</div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="month">Ay</label>
+      <input type="number" id="month" name="month" placeholder="Ay" formControlName="month" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="paymentFormGroup.get('month').hasError('required')&&paymentFormGroup.get('month').touched">Bu alanı
+        doldurmak zorunlu</div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="cvv">Cvv</label>
+      <input type="number" id="cvv" placeholder="Cvv" formControlName="cvv" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="paymentFormGroup.get('cvv').hasError('required')&&paymentFormGroup.get('cvv').touched">Bu alanı doldurmak
+        zorunlu</div>
+    </div>
+    <div class="mt-3" *ngIf="!paymentFormGroup.valid">Lütfen alanları kart üzerindeki bilgilere göre doğru bir şekilde doldurunuz</div>
+    <button class="btn-primary mt-3" (click)="rent(false)"
+      *ngIf="isItSaved(paymentFormGroup.get('cardNumber').value)&&paymentFormGroup.valid">Öde</button>
+    <button class="btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#saveModal"
+      *ngIf="!isItSaved(paymentFormGroup.get('cardNumber').value)&&paymentFormGroup.valid">Öde</button>
+  </form>
+
+  <!-- Kartı Kaydet Modal -->
+  <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveModalLabel">Kart Kayıt Edilsin Mi?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="rent(false)" data-bs-dismiss="modal">Kaydetme ve
+            öde</button>
+          <button type="button" class="btn btn-primary" (click)="rent(true)" data-bs-dismiss="modal">Kaydet ve öde</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kayıtlı Kart İle Öde Modal -->
+  <div class="modal fade" id="savedCardModal" tabindex="-1" aria-labelledby="savedCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savedCardModalLabel">Kayıtlı Kart İle Öde</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div *ngIf="currentPayment">
+          <div class="modal-body">
+            <ul class="list-group">
+              <li class="list-group-item">Kart Üzerindeki İsim: <strong>{{currentPayment.cardHolderName}}</strong></li>
+              <li class="list-group-item">Kart Numarası: <strong>{{currentPayment.cardNumber}}</strong></li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger me-auto" (click)="delete()" data-bs-dismiss="modal">Sil</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+            <button type="button" class="btn btn-primary" (click)="rentWithSavedCard(currentPayment)"
+              data-bs-dismiss="modal">Ödemeyi Tamamla</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

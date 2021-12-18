@@ -1,0 +1,57 @@
+<div *ngIf="currentCar" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Güncelle</h5>
+            <button type="button" class="btn-close" routerLink="/list/car"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="updateCarFormGroup">
+                <div class="form-group">
+                    <label for="brandId">Marka</label>
+                    <select id="brandId" class="form-control" formControlName="brandId">
+                        <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+                    </select> 
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('brandId').hasError('required')&&updateCarFormGroup.get('brandId').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="colorId">Renk</label>
+                    <select id="colorId" class="form-control" formControlName="colorId">
+                        <option *ngFor="let color of colors" [value]="color.id">{{color.name}}</option>
+                    </select> 
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('colorId').hasError('required')&&updateCarFormGroup.get('colorId').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="name">Model</label>
+                    <input type="text" id="name" placeholder="Model" formControlName="name" class="form-control">
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('name').hasError('required')&&updateCarFormGroup.get('name').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="modelYear">Model Yılı</label>
+                    <input type="text" id="modelYear" placeholder="Model Yılı" formControlName="modelYear" class="form-control">
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('modelYear').hasError('required')&&updateCarFormGroup.get('modelYear').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="description">Açıklama</label>
+                    <input type="text" id="description" placeholder="Açıklama" formControlName="description" class="form-control">
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('description').hasError('required')&&updateCarFormGroup.get('description').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="findeksPoint">Findeks Puanı</label>
+                    <input type="number" id="findeksPoint" placeholder="Findeks Puanı" formControlName="findeksPoint" class="form-control">
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('findeksPoint').hasError('required')&&updateCarFormGroup.get('findeksPoint').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="dailyPrice">Günlük Fiyat</label>
+                    <input type="number" id="dailyPrice" placeholder="Günlük Fiyat" formControlName="dailyPrice" class="form-control">
+                    <div class="alert alert-danger" *ngIf="updateCarFormGroup.get('dailyPrice').hasError('required')&&updateCarFormGroup.get('dailyPrice').touched">Bu alanı doldurmak zorunludur</div>
+                </div>
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" routerLink="/list/car">Çık</button>
+            <button class="btn btn-primary" (click)="update()">Güncelle</button>
+        </div>
+    </div>
+</div>
+

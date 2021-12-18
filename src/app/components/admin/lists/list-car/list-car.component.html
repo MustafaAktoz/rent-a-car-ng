@@ -1,0 +1,63 @@
+<div>
+    <input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText"
+    [(ngModel)]="filterText">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marka Id</th>
+            <th>Renk Id</th>
+            <th>Model</th>
+            <th>Model Yılı</th>
+            <th>Açıklama</th>
+            <th>Findeks Puanı</th>
+            <th>Fiyat</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let car of cars |carFilter:filterText">
+            <td>{{car.id}}</td>
+            <td>{{car.brandId |brandName:brands}}</td>
+            <td>{{car.colorId |colorName:colors}}</td>
+            <td>{{car.name}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{{car.description}}</td>
+            <td>{{car.findeksPoint}}</td>
+            <td>{{car.dailyPrice |currency}}</td>
+
+                <td>
+                    <div class="row col-md-12">
+                        <div class="col-md-auto"><button class="btn btn-outline-primary" routerLink="/update/car/{{car.id}}" (click)="saveCurrentCar(car)">Güncelle</button></div>
+                        <div class="col-md-auto"><button class="btn btn-outline-danger" (click)="setCurrentCar(car)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button></div>
+                        <div class="col-md-auto"><button class="btn btn-outline-primary" routerLink="/add/car-image/{{car.id}}">Resim Ekle/Sil</button></div>
+                    </div>
+                </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Sil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div *ngIf="currentCar">
+            <div class="modal-body">
+            <strong>{{currentCar.name}}</strong> Silinecek
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="delete()">Sil</button>
+        </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+</div>
