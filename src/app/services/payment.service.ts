@@ -34,6 +34,13 @@ export class PaymentService {
     },errorResponse=> this.templatesService.errorResponse(errorResponse))
   }
 
+  update(payment:Payment){
+    this.httpClient.post<ResponseModel>(this.PAYMENTS_PATH+"update",payment).subscribe(response=>{
+      this.toastrService.success(response.message,SUCCESS)
+      window.location.reload()
+    },errorResponse=> this.templatesService.errorResponse(errorResponse))
+  }
+
   getByUserId(userId:number)
   {
     return this.httpClient.get<ListResponseModel<Payment>>(this.PAYMENTS_PATH+"getbyuserid?userId="+userId)

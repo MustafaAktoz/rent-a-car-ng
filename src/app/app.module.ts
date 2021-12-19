@@ -47,6 +47,7 @@ import { RentInformationComponent } from './components/user/rent-information/ren
 import { RentalHistoryComponent } from './components/user/rental-history/rental-history.component';
 import { SavedCardsComponent } from './components/user/saved-cards/saved-cards.component';
 import { CreditCardPipe } from './pipes/credit-card.pipe';
+import { ShowPasswordDirective } from './drectives/show-password.directive';
 
 
 
@@ -90,6 +91,7 @@ import { CreditCardPipe } from './pipes/credit-card.pipe';
     RentalHistoryComponent,
     SavedCardsComponent,
     CreditCardPipe,
+    ShowPasswordDirective,
 
   ],
   imports: [

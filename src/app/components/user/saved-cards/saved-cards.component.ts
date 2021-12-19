@@ -33,4 +33,8 @@ export class SavedCardsComponent implements OnInit {
   delete(){
     this.payment.delete(this.currentPayment);
   }
+
+  update(){
+    this.payment.update(this.currentPayment);
+  }
 }

@@ -1,4 +1,5 @@
-<input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText" [(ngModel)]="filterText"> 
+<input class="form-control" placeholder="Arama ifadesi giriniz" id="filterText" name="filterText"
+    [(ngModel)]="filterText">
 <table class="table">
     <thead>
         <tr>
@@ -12,34 +13,35 @@
             <td>{{brand.id}}</td>
             <td>{{brand.name}}</td>
             <td>
-                <div class="row col-md-6">
-                    <div class="col-md-auto"><button class="btn btn-outline-primary" routerLink="/update/brand/{{brand.id}}" (click)="saveCurrentBrand(brand)">Güncelle</button></div>
-                    <div class="col-md-auto"><button type="button" class="btn btn-outline-danger" (click)="setCurrentBrand(brand)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button></div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-outline-primary align-end" routerLink="/update/brand/{{brand.id}}" (click)="saveCurrentBrand(brand)">Güncelle</button>
+                    <button class="btn btn-outline-danger align-end" (click)="setCurrentBrand(brand)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button>
                 </div>
+
             </td>
         </tr>
     </tbody>
 </table>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Sil</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="currentBrand">
+                <div class="modal-body">
+                    <strong>{{currentBrand.name}}</strong> Silinecek
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="delete()">Sil</button>
+                </div>
+            </div>
+
         </div>
-        <div *ngIf="currentBrand">
-            <div class="modal-body">
-            <strong>{{currentBrand.name}}</strong> Silinecek
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="delete()">Sil</button>
-        </div>
-        </div>
-        
     </div>
-</div>
 </div>

@@ -21,32 +21,32 @@
             </tbody>
         </table>
         
-        <div class="bg-light">
-            <h3>Resim Seç</h3>
+        <div style="height: 500px;" class="bg-light border col-md-7">
+            <h3 class="text-center mt-1">Resim Yükle</h3>
 
             <div style="height: 400px;" ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
                 (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
-                <h5 class="text-center">Base drop zone</h5>
+                <h5 style="margin-top: 200px;" class="text-center">Base drop zone</h5>
 
             </div>
         </div>
 
-        <input class="mt-3" type="file" ng2FileSelect [uploader]="uploader" />
 
 
-        <div class="col-md-9 mt-3" style="margin-bottom: 40px">
+        <div class="bg-light col-md-5 border">
+        <input type="file" class="mt-1" ng2FileSelect [uploader]="uploader" />
             <table class="table">
                 <thead>
                     <tr>
-                        <th width="50%">Name</th>
-                        <th>Size</th>
-                        <th>Progress</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>İsim</th>
+                        <th>Boyut</th>
+                        <th>İlerleme</th>
+                        <th>Durum</th>
+                        <th>Seçim</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of uploader.queue">
+                    <tr *ngFor="let item of uploader.queue" class="col-md-auto">
                         <td><strong>{{ item?.file?.name }}</strong></td>
                         <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB
                         </td>
@@ -62,15 +62,15 @@
                             <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                         </td>
                         <td nowrap>
-                            <button type="button" class="btn btn-success btn-xs" (click)="item.upload()"
+                            <button type="button" class="btn btn-outline-primary btn-xs" (click)="item.upload()"
                                 [disabled]="item.isReady || item.isUploading || item.isSuccess">
                                 <span class="glyphicon glyphicon-upload"></span> Upload
                             </button>
-                            <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()"
+                            <!-- <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()"
                                 [disabled]="!item.isUploading">
                                 <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                            </button> -->
+                            <button type="button" class="btn btn-outline-danger btn-xs" (click)="item.remove()">
                                 <span class="glyphicon glyphicon-trash"></span> Remove
                             </button>
                         </td>

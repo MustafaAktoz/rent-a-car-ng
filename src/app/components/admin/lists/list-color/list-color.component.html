@@ -5,7 +5,6 @@
             <th>Id</th>
             <th>Renk</th>
             <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -13,9 +12,9 @@
             <td>{{color.id}}</td>
             <td>{{color.name}}</td>
             <td>
-                <div class="row col-md-6">
-                    <div class="col-md-auto"><button type="button" class="btn btn-outline-primary" routerLink="/update/color/{{color.id}}"(click)="saveCurrentColor(color)">Güncelle</button></div>
-                    <div class="col-md-auto"><button type="button" class="btn btn-outline-danger" (click)="setCurrentColor(color)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button></div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-outline-primary" routerLink="/update/color/{{color.id}}"(click)="saveCurrentColor(color)">Güncelle</button>
+                    <button class="btn btn-outline-danger" (click)="setCurrentColor(color)" data-bs-toggle="modal" data-bs-target="#deleteModal">X</button>
                 </div>
             </td>
         </tr>

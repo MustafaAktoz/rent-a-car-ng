@@ -1,17 +1,46 @@
 <h5>Kayıtlı Kartlar</h5>
 <div *ngFor="let payment of payments">
     <ul class="list-group mb-1">
-        <li class="list-group-item row">
+        <li class="list-group-item row" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="setCurrentPayment(payment)">
             <td class="col-md-2"><strong>Kart üzerindeki isim:</strong></td>
             <td class="col-md-4">{{payment.cardHolderName}}</td>
             <td class="col-md-2"><strong>Kart Numarası:</strong></td>
             <td class="col-md-4">{{payment.cardNumber |creditCard}}</td>
-            <td class="col-md-1"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                    (click)="setCurrentPayment(payment)">Sil</button></td>
+            <td class="col-md-1">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="setCurrentPayment(payment)">Sil</button>
+                </div>
+            </td>
         </li>
     </ul>
 </div>
 
+<!-- İnfo Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Kart Detayları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="currentPayment">
+                <div class="modal-body">
+                    <ul class="list-group">                
+                        <li class="list-group-item">İsim: <strong class="float-end">{{currentPayment.cardHolderName}}</strong></li>
+                        <li class="list-group-item">Numara: <strong class="float-end">{{currentPayment.cardNumber}}</strong></li>
+                        <li class="list-group-item">Yıl: <strong class="float-end">{{currentPayment.year}}</strong></li>
+                        <li class="list-group-item">Ay: <strong class="float-end">{{currentPayment.month}}</strong></li>
+                        <li class="list-group-item">Cvv <strong class="float-end">{{currentPayment.cvv}}</strong></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Çık</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
