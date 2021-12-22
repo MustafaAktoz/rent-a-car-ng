@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class SmallNumberInputComponent implements OnInit,ControlValueAccessor {
 
-  //Görünyü bozsada ödeme ekranı için kullanıldı
+  //Ödeme ekranı için kullanıldı
   @Input() min: number;
   @Input() max: number;
   @Input() placeholder:string;
