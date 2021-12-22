@@ -38,9 +38,9 @@ export class PaymentComponent implements OnInit {
     this.paymentFormGroup = this.formBuilder.group({
       cardHolderName: ["", Validators.required],
       cardNumber: ["", [Validators.required,Validators.minLength(16),Validators.maxLength(16)]],
-      year: ["", [Validators.required,Validators.minLength(2),Validators.maxLength(2)]],
-      month: ["", [Validators.required,Validators.minLength(2),Validators.maxLength(2)]],
-      cvv: ["", [Validators.required,Validators.minLength(3),Validators.maxLength(3)]],
+      year: ["", [Validators.required,Validators.min(0),Validators.max(99)]],
+      month: ["", [Validators.required,Validators.min(1),Validators.max(12)]],
+      cvv: ["", [Validators.required,Validators.min(100),Validators.max(999)]],
     })
   }
 
@@ -51,7 +51,6 @@ export class PaymentComponent implements OnInit {
       rentDto.rental = JSON.parse(this.localStorageService.get("rental"))
       rentDto.payment = Object.assign({}, this.paymentFormGroup.value)
       rentDto.payment.userId = this.authService.getCurrentUserId
-
       if (save) this.paymentService.save(rentDto.payment)
 
       this.rentalService.add(rentDto)

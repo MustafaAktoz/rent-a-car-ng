@@ -26,20 +26,24 @@
         *ngIf="paymentFormGroup.get('cardNumber').hasError('required')&&paymentFormGroup.get('cardNumber').touched">Bu
         alanı doldurmak zorunlu</div>
     </div>
-    <div class="form-group mt-3">
+    
+    <div class="row">
+      <div class="form-group mt-3 col-md-6">
       <label for="year">Yıl</label>
-      <input type="number" id="year" placeholder="Yıl" formControlName="year" class="form-control">
+      <app-small-number-input [placeholder]="'Yıl'" [min]="0" [max]="99" id="year" formControlName="year"></app-small-number-input>
       <div class="alert alert-danger"
         *ngIf="paymentFormGroup.get('year').hasError('required')&&paymentFormGroup.get('year').touched">Bu alanı
         doldurmak zorunlu</div>
     </div>
-    <div class="form-group mt-3">
+    <div class="form-group mt-3 col-md-6">
       <label for="month">Ay</label>
-      <input type="number" id="month" name="month" placeholder="Ay" formControlName="month" class="form-control">
+      <app-small-number-input [placeholder]="'Ay'" [min]="1" [max]="12"  id="month" name="month" formControlName="month" ></app-small-number-input>
       <div class="alert alert-danger"
         *ngIf="paymentFormGroup.get('month').hasError('required')&&paymentFormGroup.get('month').touched">Bu alanı
         doldurmak zorunlu</div>
     </div>
+    </div>
+    
     <div class="form-group mt-3">
       <label for="cvv">Cvv</label>
       <input type="number" id="cvv" placeholder="Cvv" formControlName="cvv" class="form-control">
