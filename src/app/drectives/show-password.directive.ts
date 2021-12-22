@@ -4,6 +4,7 @@ import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/cor
   selector: '[appShowPassword]'
 })
 export class ShowPasswordDirective{
+  //Login ekranı için kullanıldı
   @Input() appShowPassword: string;
 
   constructor(private el: ElementRef) {}
