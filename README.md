@@ -8,6 +8,12 @@ This project is a frontend project that I created to complete my RentACar backen
 ### Home Page
 <img src="readme-images/home-page.png">
 
+### Payment Page
+<img src="readme-images/payment.png">
+
+### Pay With Saved Card
+<img src="readme-images/pay-with-saved-card.png">
+
 ### Change Password Page
 <img src="readme-images/change-password.png">
 
