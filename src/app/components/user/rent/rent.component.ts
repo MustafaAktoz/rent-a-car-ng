@@ -39,14 +39,14 @@ export class RentComponent implements OnInit {
   createRentFormGroup() {
     this.rentFormGroup = this.formBuilder.group({
       rentDate: ["", Validators.required],
-      returnDate: [""]
+      returnDate: [null]
     })
   }
 
   add() {
     if (this.rentFormGroup.valid) {
       let rental:Rental = Object.assign({}, this.rentFormGroup.value)
-      console.log(rental)
+      if(!rental.returnDate)rental.returnDate=null
       rental.carId=this.carId
       rental.customerId=this.customer.id
 

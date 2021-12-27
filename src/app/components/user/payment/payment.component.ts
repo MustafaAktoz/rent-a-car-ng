@@ -67,7 +67,6 @@ export class PaymentComponent implements OnInit {
     rentDto.payment = payment
 
     this.rentalService.add(rentDto)
-    this.router.navigate(["cars"])
   }
 
   delete(){
