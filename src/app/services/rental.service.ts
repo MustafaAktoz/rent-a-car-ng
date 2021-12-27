@@ -9,6 +9,7 @@ import { RentDto } from '../models/rent-dto';
 import { Rental } from '../models/rental';
 import { RentalDetailDto } from '../models/rental-detail-dto';
 import { ResponseModel } from '../models/response-model';
+import { SingleResponseModel } from '../models/single-reponse-model';
 import { LocalStorageService } from './local-storage.service';
 import { TemplatesService } from './templates.service';
 
@@ -39,6 +40,18 @@ export class RentalService {
       this.localStorageService.delete("rental")
       this.router.navigate(["cars"])
     },errorResponse=> this.templatesService.errorResponse(errorResponse))
+  }
+
+  deliver(rental:Rental){
+    this.httpClient.post<ResponseModel>(this.RENTALS_PATH+"deliver",rental).subscribe(response=>{
+      this.toastrService.success(response.message,SUCCESS)
+      this.localStorageService.delete("rental")
+      window.location.reload()
+    },errorResponse=> this.templatesService.errorResponse(errorResponse))
+  }
+
+  getById(id:number){
+    return this.httpClient.get<SingleResponseModel<Rental>>(this.RENTALS_PATH+"getbyid?id="+id);
   }
 
   rulesForAdd(rental:Rental)

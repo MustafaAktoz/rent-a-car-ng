@@ -6,6 +6,7 @@
             <th>Ad-Soyad</th>
             <th>Kiralama Tarihi</th>
             <th>Teslim Tarihi</th>
+
         </tr>
     </thead>
     <tbody>
@@ -14,7 +15,35 @@
             <td>{{rentalDetailDto.brandName}}</td>
             <td>{{rentalDetailDto.fullName}}</td>
             <td>{{rentalDetailDto.rentDate |date}}</td>
-            <td>{{rentalDetailDto.returnDate |date}}</td>
+            <td *ngIf="rentalDetailDto.returnDate">{{rentalDetailDto.returnDate |date}}</td>
+            <td *ngIf="!rentalDetailDto.returnDate"><button class="btn btn-outline-success btn-sm"
+                    (click)="setCurrentRental(rentalDetailDto.id)" data-bs-toggle="modal"
+                    data-bs-target="#deliverModal">Teslim Et</button></td>
         </tr>
     </tbody>
 </table>
+
+<!-- Button trigger modal -->
+
+
+<!-- Deliver Modal -->
+<div class="modal fade" id="deliverModal" tabindex="-1" aria-labelledby="deliverModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deliverModalLabel">Teslim Et</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="currentRental">
+                <div class="modal-body">
+                    Müşteri arabayı teslim etti mi ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" (click)="deliver()" class="btn btn-primary" data-bs-dismiss="modal">Evet</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

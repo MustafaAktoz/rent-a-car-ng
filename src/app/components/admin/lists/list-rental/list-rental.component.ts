@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Rental } from 'src/app/models/rental';
 import { RentalDetailDto } from 'src/app/models/rental-detail-dto';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -9,6 +10,7 @@ import { RentalService } from 'src/app/services/rental.service';
 })
 export class ListRentalComponent implements OnInit {
 
+  currentRental:Rental
   rentalDetailDtos:RentalDetailDto[]
   constructor(private rentalService:RentalService) { }
 
@@ -21,6 +23,16 @@ export class ListRentalComponent implements OnInit {
     this.rentalService.getRentalDetails().subscribe(response=>{
       this.rentalDetailDtos=response.data
     })
+  }
+
+  setCurrentRental(id:number){
+    this.rentalService.getById(id).subscribe(response=>{
+      this.currentRental=response.data
+    })
+  }
+
+  deliver(){
+    this.rentalService.deliver(this.currentRental);
   }
 
 }
