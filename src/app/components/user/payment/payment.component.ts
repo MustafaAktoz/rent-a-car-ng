@@ -1,9 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ERROR, FORM_IS_MISSING, SUCCESS } from 'src/app/models/messages';
+import { ERROR, FORM_IS_MISSING } from 'src/app/models/messages';
 import { Payment } from 'src/app/models/payment';
 import { RentDto } from 'src/app/models/rent-dto';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,14 +19,13 @@ export class PaymentComponent implements OnInit {
   currentPayment: Payment
   payments: Payment[]
   paymentFormGroup: FormGroup
-  minYear:number
+
   constructor(private rentalService: RentalService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private localStorageService: LocalStorageService,
     private paymentService: PaymentService,
-    private authService: AuthService,
-    private router: Router) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
 
