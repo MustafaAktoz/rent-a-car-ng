@@ -39,6 +39,10 @@ export class SmallNumberInputComponent implements OnInit,ControlValueAccessor {
       this.value++;
       this.onChange(this.value);
     }
+    else if(this.value==this.max){
+      this.value=this.min
+      this.onChange(this.min)
+    }
   }
 
   decrease() {
@@ -48,6 +52,10 @@ export class SmallNumberInputComponent implements OnInit,ControlValueAccessor {
     } else if (this.value > this.min) {
       this.value--;
       this.onChange(this.value);
+    }
+    else if(this.value==this.min){
+      this.value=this.max
+      this.onChange(this.max)
     }
   }
 

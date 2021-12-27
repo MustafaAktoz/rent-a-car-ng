@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,6 +21,7 @@ export class PaymentComponent implements OnInit {
   currentPayment: Payment
   payments: Payment[]
   paymentFormGroup: FormGroup
+  minYear:number
   constructor(private rentalService: RentalService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
@@ -31,14 +33,16 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
 
     this.getByUserId()
-
+   
   }
 
   createPaymentFormGroup() {
+    let year=Number(new Date().getFullYear().toString().substring(2));
+
     this.paymentFormGroup = this.formBuilder.group({
       cardHolderName: ["", Validators.required],
       cardNumber: ["", [Validators.required,Validators.minLength(16),Validators.maxLength(16)]],
-      year: ["", [Validators.required,Validators.min(0),Validators.max(99)]],
+      year: [year, [Validators.required,Validators.min(0),Validators.max(99)]],
       month: ["", [Validators.required,Validators.min(1),Validators.max(12)]],
       cvv: ["", [Validators.required,Validators.min(100),Validators.max(999)]],
     })
